@@ -30,7 +30,9 @@ else:
 
     st.subheader("🔍 Correlation Heatmap")
     fig1, ax1 = plt.subplots(figsize=(8,6))
-    sns.heatmap(df.corr(), annot=True, cmap="coolwarm", ax=ax1)
+    numeric_df = df.select_dtypes(include=['number'])
+
+    sns.heatmap(numeric_df.corr(), annot=True, cmap="coolwarm", ax=ax1)
     st.pyplot(fig1)
 
     # Train-test split
