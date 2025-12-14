@@ -125,6 +125,24 @@ Users can input values for features like BMI, GDP, Schooling, etc., and the app 
 
 ---
 
+## 🛑 Common Errors & Fixes (Important)
+
+### ❌ Correlation Heatmap Error on Streamlit Cloud
+
+If you see an error related to `df.corr()` or `ValueError`, it means your dataset contains **non-numeric columns**.
+
+✅ **Fix used in this app:**
+Only numeric columns are selected before plotting the heatmap:
+
+```python
+numeric_df = df.select_dtypes(include=['number'])
+sns.heatmap(numeric_df.corr(), annot=True, cmap='coolwarm')
+```
+
+This makes the app **100% compatible with Streamlit Cloud**.
+
+---
+
 ## ☁️ Deploy on Streamlit Cloud
 
 1. Push all files to GitHub
